@@ -11,37 +11,31 @@
 :root{--bg:#0a0a0f;--surface:#12121a;--surface2:#1a1a26;--border:#2a2a3a;--accent:#c9a84c;--accent-dim:#8a7030;--text:#e8e8f0;--text-dim:#8888a0;--red:#c44040;--green:#40a060;--blue:#4080c4}
 body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-/* Header */
 header{padding:48px 0 32px;border-bottom:1px solid var(--border);text-align:center}
 header h1{font-size:2.8rem;font-weight:400;letter-spacing:0.08em;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
 header .subtitle{font-size:1.05rem;color:var(--text-dim);font-style:italic;letter-spacing:0.04em}
 header .edition{margin-top:16px;font-size:0.85rem;color:var(--text-dim);letter-spacing:0.06em;text-transform:uppercase}
-
-/* Stats bar */
+.data-source{margin-top:8px;font-size:0.75rem;color:var(--text-dim);letter-spacing:0.04em}
+.data-source .live{color:var(--green)}
+.data-source .fallback{color:var(--accent-dim)}
 .stats-bar{display:flex;justify-content:center;gap:48px;padding:24px 0;border-bottom:1px solid var(--border)}
 .stat{text-align:center}
 .stat .value{font-size:1.8rem;color:var(--accent);font-weight:400}
 .stat .label{font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px}
-
-/* Filters */
 .filters{display:flex;gap:12px;padding:24px 0;flex-wrap:wrap;justify-content:center}
 .filter-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-dim);padding:8px 20px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:0.85rem;letter-spacing:0.04em;transition:all 0.2s}
 .filter-btn:hover,.filter-btn.active{background:var(--accent);color:var(--bg);border-color:var(--accent)}
-
-/* Auction Grid */
 .auction-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:28px;padding:32px 0}
-.auction-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform 0.2s,border-color 0.2s}
+.auction-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform 0.2s,border-color 0.2s;text-decoration:none;color:inherit;display:block}
 .auction-card:hover{transform:translateY(-3px);border-color:var(--accent-dim)}
-.card-image{width:100%;aspect-ratio:16/10;background:var(--surface2);position:relative;overflow:hidden}
+.card-image{width:100%;aspect-ratio:16/10;background:var(--surface2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .card-image img{width:100%;height:100%;object-fit:cover}
+.card-image .placeholder{font-size:3rem;opacity:0.3}
 .card-badge{position:absolute;top:12px;right:12px;background:rgba(10,10,15,0.85);color:var(--accent);padding:4px 12px;border-radius:3px;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;backdrop-filter:blur(8px)}
 .card-body{padding:20px}
 .card-year{font-size:0.8rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase}
 .card-title{font-size:1.25rem;margin:6px 0 12px;font-weight:400;line-height:1.35}
-.card-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px}
-.card-meta span{font-size:0.8rem;color:var(--text-dim)}
-.card-meta span strong{color:var(--text)}
+.card-desc{font-size:0.88rem;color:var(--text-dim);line-height:1.5;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .card-price{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:1px solid var(--border)}
 .price-amount{font-size:1.5rem;color:var(--green)}
 .price-label{font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em}
@@ -49,8 +43,6 @@ header .edition{margin-top:16px;font-size:0.85rem;color:var(--text-dim);letter-s
 .card-tags{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
 .tag{font-size:0.7rem;padding:3px 10px;border-radius:3px;background:var(--surface2);color:var(--text-dim);letter-spacing:0.04em}
 .tag.highlight{background:rgba(201,168,76,0.15);color:var(--accent)}
-
-/* Notable Sales Section */
 .section-title{font-size:1.6rem;font-weight:400;color:var(--accent);padding:40px 0 20px;border-bottom:1px solid var(--border);margin-bottom:28px;letter-spacing:0.04em}
 .notable-sale{display:flex;gap:24px;padding:20px 0;border-bottom:1px solid var(--border)}
 .notable-sale:last-child{border-bottom:none}
@@ -58,8 +50,6 @@ header .edition{margin-top:16px;font-size:0.85rem;color:var(--text-dim);letter-s
 .notable-info h3{font-size:1.1rem;font-weight:400;margin-bottom:6px}
 .notable-info .sale-price{color:var(--green);font-size:1.2rem;margin-bottom:4px}
 .notable-info .sale-detail{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
-
-/* Trends */
 .trends-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding-bottom:40px}
 .trend-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px}
 .trend-card h3{font-size:1rem;font-weight:400;margin-bottom:12px;color:var(--text)}
@@ -69,21 +59,11 @@ header .edition{margin-top:16px;font-size:0.85rem;color:var(--text-dim);letter-s
 .trend-direction .pct.up{color:var(--green)}
 .trend-direction .pct.down{color:var(--red)}
 .trend-detail{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
-
-/* Footer */
+.loading{text-align:center;padding:60px 0;color:var(--text-dim);font-style:italic}
 footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-dim);font-size:0.8rem}
 footer a{color:var(--accent);text-decoration:none}
-
-/* Responsive */
-@media(max-width:768px){
-  header h1{font-size:2rem}
-  .stats-bar{gap:24px}
-  .auction-grid{grid-template-columns:1fr}
-  .notable-sale{flex-direction:column;gap:8px}
-}
-@media(min-width:768px) and (max-width:1024px){
-  .auction-grid{grid-template-columns:repeat(2,1fr)}
-}
+@media(max-width:768px){header h1{font-size:2rem}.stats-bar{gap:24px}.auction-grid{grid-template-columns:1fr}.notable-sale{flex-direction:column;gap:8px}}
+@media(min-width:768px) and (max-width:1024px){.auction-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -91,16 +71,16 @@ footer a{color:var(--accent);text-decoration:none}
 <div class="container">
 <h1>BaT Spotlight</h1>
 <p class="subtitle">Curated Weekly Highlights from the Collector Car World</p>
-<p class="edition">Week of February 17–23, 2026 &bull; Issue No. 47</p>
+<p class="edition" id="edition">Loading...</p>
+<p class="data-source" id="dataSource"></p>
 </div>
 </header>
 
 <div class="container">
 <div class="stats-bar">
-<div class="stat"><div class="value">342</div><div class="label">Auctions Closed</div></div>
-<div class="stat"><div class="value">$18.7M</div><div class="label">Total Hammer</div></div>
-<div class="stat"><div class="value">$54,680</div><div class="label">Avg. Sale Price</div></div>
-<div class="stat"><div class="value">91%</div><div class="label">Sell-Through</div></div>
+<div class="stat"><div class="value" id="statCount">—</div><div class="label">Auctions Featured</div></div>
+<div class="stat"><div class="value" id="statHighest">—</div><div class="label">Highest Sale</div></div>
+<div class="stat"><div class="value" id="statCategories">—</div><div class="label">Categories</div></div>
 </div>
 
 <div class="filters">
@@ -108,16 +88,14 @@ footer a{color:var(--accent);text-decoration:none}
 <button class="filter-btn" onclick="filterCards('american')">American</button>
 <button class="filter-btn" onclick="filterCards('european')">European</button>
 <button class="filter-btn" onclick="filterCards('japanese')">Japanese</button>
-<button class="filter-btn" onclick="filterCards('sixfig')">Six Figures</button>
-<button class="filter-btn" onclick="filterCards('nostalgia')">Nostalgia</button>
 </div>
 
 <div class="auction-grid" id="auctionGrid">
-<!-- Cards inserted by JS -->
+<div class="loading">Loading auction data...</div>
 </div>
 
-<h2 class="section-title">Top 5 Sales This Week</h2>
-<div id="notableSales"></div>
+<h2 class="section-title">Top Sales This Week</h2>
+<div id="notableSales"><div class="loading">Loading...</div></div>
 
 <h2 class="section-title">Market Trends</h2>
 <div class="trends-grid" id="trendsGrid"></div>
@@ -126,32 +104,12 @@ footer a{color:var(--accent);text-decoration:none}
 <footer>
 <div class="container">
 <p>BaT Spotlight is an independent editorial curation. Not affiliated with Bring a Trailer LLC.</p>
-<p style="margin-top:8px">Data refreshed weekly &bull; <a href="#">Archive</a> &bull; <a href="#">About</a></p>
+<p style="margin-top:8px">Data refreshed weekly via <a href="https://bringatrailer.com" target="_blank">bringatrailer.com</a> &bull; <a href="#">Archive</a> &bull; <a href="#">About</a></p>
 </div>
 </footer>
 
 <script>
-const auctions = [
-  {year:"1967",title:"Shelby GT500 Fastback",img:"https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600&h=375&fit=crop",badge:"Editor's Pick",price:"$247,500",bids:87,tags:["american","sixfig"],meta:{miles:"42,800 mi",trans:"4-Speed Manual",loc:"Scottsdale, AZ"},highlight:"Matching-numbers 428 Police Interceptor. One of 2,048 fastbacks built. Concours-restored in Nightmist Blue."},
-  {year:"1973",title:"Porsche 911 Carrera RS 2.7",img:"https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=600&h=375&fit=crop",badge:"Record Sale",price:"$385,000",bids:112,tags:["european","sixfig"],meta:{miles:"61,200 km",trans:"5-Speed Manual",loc:"Greenwich, CT"},highlight:"Lightweight spec in Grand Prix White/Green. Matching engine and gearbox. Full COA documentation."},
-  {year:"1994",title:"Toyota Supra RZ Twin-Turbo",img:"https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?w=600&h=375&fit=crop",badge:"Hot Market",price:"$142,000",bids:94,tags:["japanese","sixfig"],meta:{miles:"38,400 km",trans:"6-Speed Getrag",loc:"Los Angeles, CA"},highlight:"JDM-spec A80 in Super White II. Bone-stock 2JZ-GTE. Imported under 25-year rule. Pristine original interior."},
-  {year:"1955",title:"Mercedes-Benz 300SL Gullwing",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&h=375&fit=crop",badge:"Headline Lot",price:"$1,425,000",bids:156,tags:["european","sixfig"],meta:{miles:"52,100 mi",trans:"4-Speed Manual",loc:"Palm Beach, FL"},highlight:"Rudge knock-off wheels. Fitted luggage. Continuous ownership history from new. Stunning Silver/Red leather."},
-  {year:"1969",title:"Chevrolet Camaro Z/28",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&h=375&fit=crop",badge:"Barn Find",price:"$89,000",bids:68,tags:["american","nostalgia"],meta:{miles:"71,300 mi",trans:"Muncie 4-Speed",loc:"Nashville, TN"},highlight:"Fathom Green over black. DZ 302 intact. Stored in Tennessee barn since 1988. Remarkably solid floors."},
-  {year:"1990",title:"BMW E30 M3 Sport Evolution",img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&h=375&fit=crop",badge:"Rare Spec",price:"$178,000",bids:91,tags:["european","sixfig"],meta:{miles:"84,200 km",trans:"5-Speed Dogleg",loc:"Miami, FL"},highlight:"Number 312 of 600 Sport Evolutions built. Brilliant Red. Original S14 2.5L producing 238hp. Unmodified."},
-  {year:"1971",title:"Plymouth 'Cuda 440 Six Pack",img:"https://images.unsplash.com/photo-1611016186353-652a76ce270e?w=600&h=375&fit=crop",badge:"Muscle",price:"$198,500",bids:103,tags:["american","sixfig","nostalgia"],meta:{miles:"34,600 mi",trans:"A-833 4-Speed",loc:"Detroit, MI"},highlight:"In Violet with black billboard stripe. Shaker hood. Broadcast sheet verifies 440+6 with pistol-grip shifter."},
-  {year:"1985",title:"Toyota AE86 Sprinter Trueno",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=600&h=375&fit=crop",badge:"Cult Classic",price:"$62,500",bids:77,tags:["japanese","nostalgia"],meta:{miles:"96,300 km",trans:"5-Speed T50",loc:"Portland, OR"},highlight:"Zenki panda-scheme GT-APEX. 4A-GE 16V twin-cam. Unmolested chassis — increasingly impossible to find at any price."},
-  {year:"1961",title:"Jaguar E-Type Series I Roadster",img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&h=375&fit=crop",badge:"Timeless",price:"$265,000",bids:98,tags:["european","sixfig"],meta:{miles:"58,700 mi",trans:"4-Speed Moss",loc:"Carmel, CA"},highlight:"Flat-floor example in Opalescent Dark Blue. Covered headlamps. 3.8L straight-six. Heritage Certificate."},
-  {year:"2003",title:"Ford Lightning SVT Supercharged",img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=375&fit=crop",badge:"Modern Classic",price:"$41,500",bids:52,tags:["american","nostalgia"],meta:{miles:"28,100 mi",trans:"4-Speed Auto",loc:"Houston, TX"},highlight:"Sonic Blue. 5.4L supercharged V8 at 380hp. Low-mile survivor. The truck that started the factory sport truck wars."}
-];
-
-const topSales = [
-  {rank:1,title:"1955 Mercedes-Benz 300SL Gullwing",price:"$1,425,000",detail:"156 bids over 7 days. Silver/Red, matching numbers, continuous provenance. Highest BaT sale of 2026 so far."},
-  {rank:2,title:"1973 Porsche 911 Carrera RS 2.7",price:"$385,000",detail:"Lightweight spec, matching drivetrain. 37% above Hagerty value — RS market continues climbing."},
-  {rank:3,title:"1961 Jaguar E-Type Series I",price:"$265,000",detail:"Flat-floor roadster. Strong result for a driver-quality car with older restoration."},
-  {rank:4,title:"1967 Shelby GT500 Fastback",price:"$247,500",detail:"Matching-numbers big-block Shelby. Market has cooled slightly from 2025 highs but still strong."},
-  {rank:5,title:"1971 Plymouth 'Cuda 440 Six Pack",price:"$198,500",detail:"E-body Mopar prices remain resilient. In Violet is the magic combination for collectors."}
-];
-
+// Market trends (editorial — updated periodically by fetch script or manually)
 const trends = [
   {title:"Air-Cooled Porsche",arrow:"↑",pct:"+12%",dir:"up",detail:"911s from 1970–1989 continue their decade-long ascent. Long-hood models now routinely exceed $200K."},
   {title:"JDM Imports",arrow:"↑",pct:"+23%",dir:"up",detail:"25-year rule unlocking 2001 models. R34 GT-Rs, Evos, and Supras driving the market surge."},
@@ -161,34 +119,140 @@ const trends = [
   {title:"Modern Supercars (2000s)",arrow:"↓",pct:"-8%",dir:"down",detail:"Gallardos, F430s, and early R8s still depreciating. Not yet old enough for nostalgia premiums."}
 ];
 
-function renderCards(filter){
-  const grid=document.getElementById('auctionGrid');
-  grid.innerHTML='';
-  const filtered=filter==='all'?auctions:auctions.filter(a=>a.tags.includes(filter));
-  filtered.forEach(a=>{
-    grid.innerHTML+=`<div class="auction-card"><div class="card-image"><img src="${a.img}" alt="${a.title}" loading="lazy"><div class="card-badge">${a.badge}</div></div><div class="card-body"><div class="card-year">${a.year}</div><h3 class="card-title">${a.title}</h3><div class="card-meta"><span><strong>${a.meta.miles}</strong></span><span>${a.meta.trans}</span><span>${a.meta.loc}</span></div><p style="font-size:0.88rem;color:var(--text-dim);line-height:1.5;margin-bottom:14px">${a.highlight}</p><div class="card-price"><div><div class="price-label">Sold For</div><div class="price-amount">${a.price}</div></div><div class="bid-count">${a.bids} bids</div></div><div class="card-tags">${a.tags.map(t=>`<span class="tag${t==='sixfig'?' highlight':''}">${t==='sixfig'?'$100K+':t}</span>`).join('')}</div></div></div>`;
-  });
+let allAuctions = [];
+
+function categorize(title) {
+  const t = title.toLowerCase();
+  const jp = ['toyota','nissan','honda','mazda','subaru','mitsubishi','lexus','datsun','supra','skyline','nsx','rx-7','ae86'];
+  const eu = ['porsche','bmw','mercedes','ferrari','lamborghini','jaguar','aston','alfa','lotus','maserati','bentley','rolls','audi','volkswagen','vw','fiat','triumph','mg ','mini','volvo','saab','peugeot'];
+  if (jp.some(j => t.includes(j))) return 'japanese';
+  if (eu.some(e => t.includes(e))) return 'european';
+  return 'american';
 }
 
-function filterCards(f){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+function priceNum(p) {
+  if (!p) return 0;
+  return parseInt(String(p).replace(/[$,]/g, '')) || 0;
+}
+
+function formatPrice(n) {
+  if (!n) return '—';
+  if (typeof n === 'string' && n.startsWith('$')) return n;
+  return '$' + Number(n).toLocaleString('en-US');
+}
+
+function getBadge(auction, idx) {
+  if (idx === 0) return "Top Sale";
+  const p = priceNum(auction.price);
+  if (p >= 100000) return "Six Figures";
+  const cat = auction.category || categorize(auction.title || '');
+  if (cat === 'japanese') return 'JDM';
+  if (cat === 'european') return 'European';
+  return 'Featured';
+}
+
+function renderCards(filter) {
+  const grid = document.getElementById('auctionGrid');
+  const filtered = filter === 'all' ? allAuctions : allAuctions.filter(a => (a.category || categorize(a.title || '')) === filter);
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="loading">No auctions in this category.</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map((a, i) => {
+    const cat = a.category || categorize(a.title || '');
+    const badge = getBadge(a, i);
+    const p = priceNum(a.price);
+    const isSixFig = p >= 100000;
+    const imgHtml = a.image
+      ? `<img src="${a.image}" alt="${a.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=placeholder>🏎️</div>'">`
+      : '<div class="placeholder">🏎️</div>';
+    return `<a class="auction-card" href="${a.url || '#'}" target="_blank" rel="noopener">
+      <div class="card-image">${imgHtml}<div class="card-badge">${badge}</div></div>
+      <div class="card-body">
+        <div class="card-year">${a.year || ''}</div>
+        <h3 class="card-title">${a.title || 'Untitled'}</h3>
+        ${a.description ? `<p class="card-desc">${a.description}</p>` : ''}
+        <div class="card-price">
+          <div><div class="price-label">${a.price ? 'Sold For' : 'Auction'}</div><div class="price-amount">${a.price || 'See Listing'}</div></div>
+          ${a.bids ? `<div class="bid-count">${a.bids} bids</div>` : ''}
+        </div>
+        <div class="card-tags">
+          <span class="tag">${cat}</span>
+          ${isSixFig ? '<span class="tag highlight">$100K+</span>' : ''}
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+function filterCards(f) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   event.target.classList.add('active');
   renderCards(f);
 }
 
-function renderSales(){
-  const el=document.getElementById('notableSales');
-  el.innerHTML=topSales.map(s=>`<div class="notable-sale"><div class="notable-rank">${s.rank}</div><div class="notable-info"><h3>${s.title}</h3><div class="sale-price">${s.price}</div><div class="sale-detail">${s.detail}</div></div></div>`).join('');
+function renderTopSales() {
+  const el = document.getElementById('notableSales');
+  const sorted = [...allAuctions].filter(a => a.price).sort((a, b) => priceNum(b.price) - priceNum(a.price)).slice(0, 5);
+  if (!sorted.length) { el.innerHTML = '<div class="loading">No sale data available.</div>'; return; }
+  el.innerHTML = sorted.map((s, i) => `<div class="notable-sale">
+    <div class="notable-rank">${i + 1}</div>
+    <div class="notable-info">
+      <h3>${s.year ? s.year + ' ' : ''}${s.title}</h3>
+      <div class="sale-price">${s.price}</div>
+      <div class="sale-detail">${s.description || ''}</div>
+    </div>
+  </div>`).join('');
 }
 
-function renderTrends(){
-  const el=document.getElementById('trendsGrid');
-  el.innerHTML=trends.map(t=>`<div class="trend-card"><h3>${t.title}</h3><div class="trend-direction"><span class="arrow">${t.arrow}</span><span class="pct ${t.dir}">${t.pct}</span><span style="font-size:0.8rem;color:var(--text-dim)">vs. last month</span></div><div class="trend-detail">${t.detail}</div></div>`).join('');
+function renderTrends() {
+  document.getElementById('trendsGrid').innerHTML = trends.map(t => `<div class="trend-card">
+    <h3>${t.title}</h3>
+    <div class="trend-direction"><span class="arrow">${t.arrow}</span><span class="pct ${t.dir}">${t.pct}</span><span style="font-size:0.8rem;color:var(--text-dim)">vs. last month</span></div>
+    <div class="trend-detail">${t.detail}</div>
+  </div>`).join('');
 }
 
-renderCards('all');
-renderSales();
-renderTrends();
+function updateStats() {
+  document.getElementById('statCount').textContent = allAuctions.length;
+  const prices = allAuctions.map(a => priceNum(a.price)).filter(p => p > 0);
+  const highest = prices.length ? Math.max(...prices) : 0;
+  document.getElementById('statHighest').textContent = highest ? formatPrice(highest) : '—';
+  const cats = new Set(allAuctions.map(a => a.category || categorize(a.title || '')));
+  document.getElementById('statCategories').textContent = cats.size;
+}
+
+async function init() {
+  let data = null;
+  let isLive = false;
+
+  try {
+    const resp = await fetch('data/auctions.json');
+    if (resp.ok) {
+      data = await resp.json();
+      isLive = true;
+    }
+  } catch (e) { /* fallback */ }
+
+  if (data && data.auctions && data.auctions.length > 0) {
+    allAuctions = data.auctions;
+    document.getElementById('edition').textContent = data.weekOf ? `Week of ${data.weekOf}` : 'This Week';
+    const fetchDate = data.fetchedAt ? new Date(data.fetchedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : '';
+    document.getElementById('dataSource').innerHTML = `<span class="live">● Live Data</span> — Last updated ${fetchDate}`;
+  } else {
+    // No data file available — show message
+    document.getElementById('edition').textContent = 'Data Pending';
+    document.getElementById('dataSource').innerHTML = '<span class="fallback">○ Awaiting first data refresh</span>';
+    allAuctions = [];
+  }
+
+  updateStats();
+  renderCards('all');
+  renderTopSales();
+  renderTrends();
+}
+
+init();
 </script>
 </body>
 </html>
