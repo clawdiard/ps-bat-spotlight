@@ -62,6 +62,18 @@ header .edition{margin-top:16px;font-size:0.85rem;color:var(--text-dim);letter-s
 .loading{text-align:center;padding:60px 0;color:var(--text-dim);font-style:italic}
 footer{border-top:1px solid var(--border);padding:32px 0;text-align:center;color:var(--text-dim);font-size:0.8rem}
 footer a{color:var(--accent);text-decoration:none}
+.marque-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;justify-content:center}
+.marque-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-dim);padding:6px 16px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:0.8rem;letter-spacing:0.03em;transition:all 0.2s;display:flex;align-items:center;gap:6px}
+.marque-btn:hover{border-color:var(--accent-dim)}
+.marque-btn.active{border-color:var(--accent);color:var(--text)}
+.marque-btn .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.marque-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:40px}
+.marque-stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px}
+.marque-stat-card h4{font-size:0.85rem;font-weight:400;color:var(--text-dim);margin-bottom:8px}
+.marque-stat-card .current{font-size:1.3rem;margin-bottom:4px}
+.marque-stat-card .change{font-size:0.85rem}
+.marque-stat-card .change.up{color:var(--green)}
+.marque-stat-card .change.down{color:var(--red)}
 @media(max-width:768px){header h1{font-size:2rem}.stats-bar{gap:24px}.auction-grid{grid-template-columns:1fr}.notable-sale{flex-direction:column;gap:8px}}
 @media(min-width:768px) and (max-width:1024px){.auction-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
@@ -97,6 +109,14 @@ footer a{color:var(--accent);text-decoration:none}
 <h2 class="section-title">Top Sales This Week</h2>
 <div id="notableSales"><div class="loading">Loading...</div></div>
 
+<h2 class="section-title">Price History by Marque</h2>
+<p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:16px">Rolling 12-month average sale prices for select marques. Click legend items to toggle.</p>
+<div class="marque-controls" id="marqueControls"></div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:40px;position:relative">
+  <canvas id="priceHistoryChart" style="width:100%;max-height:420px"></canvas>
+</div>
+<div class="marque-stats" id="marqueStats"></div>
+
 <h2 class="section-title">Market Trends</h2>
 <div class="trends-grid" id="trendsGrid"></div>
 </div>
@@ -108,6 +128,7 @@ footer a{color:var(--accent);text-decoration:none}
 </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script>
 // Market trends (editorial — updated periodically by fetch script or manually)
 const trends = [
@@ -252,7 +273,108 @@ async function init() {
   renderTrends();
 }
 
+let priceChart = null;
+let priceData = null;
+
+async function initPriceHistory() {
+  try {
+    const resp = await fetch('data/price-history.json');
+    if (!resp.ok) return;
+    priceData = await resp.json();
+  } catch(e) { return; }
+
+  const marques = Object.keys(priceData.marques);
+  const controls = document.getElementById('marqueControls');
+  controls.innerHTML = marques.map((m, i) => {
+    const c = priceData.marques[m].color;
+    return `<button class="marque-btn active" data-marque="${m}" onclick="toggleMarque(this)"><span class="dot" style="background:${c}"></span>${m}</button>`;
+  }).join('');
+
+  const ctx = document.getElementById('priceHistoryChart').getContext('2d');
+  const datasets = marques.map(m => ({
+    label: m,
+    data: priceData.marques[m].prices,
+    borderColor: priceData.marques[m].color,
+    backgroundColor: priceData.marques[m].color + '18',
+    borderWidth: 2.5,
+    pointRadius: 4,
+    pointHoverRadius: 7,
+    tension: 0.35,
+    fill: false
+  }));
+
+  priceChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: priceData.months, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#12121af0',
+          titleColor: '#c9a84c',
+          bodyColor: '#e8e8f0',
+          borderColor: '#2a2a3a',
+          borderWidth: 1,
+          padding: 12,
+          callbacks: {
+            label: function(ctx) {
+              return ctx.dataset.label + ': $' + ctx.parsed.y.toLocaleString();
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#1a1a2640' },
+          ticks: { color: '#8888a0', font: { size: 11 } }
+        },
+        y: {
+          grid: { color: '#1a1a2640' },
+          ticks: {
+            color: '#8888a0',
+            font: { size: 11 },
+            callback: v => '$' + (v/1000) + 'K'
+          }
+        }
+      }
+    }
+  });
+
+  renderMarqueStats();
+}
+
+function toggleMarque(btn) {
+  btn.classList.toggle('active');
+  const m = btn.dataset.marque;
+  const ds = priceChart.data.datasets.find(d => d.label === m);
+  if (ds) {
+    ds.hidden = !btn.classList.contains('active');
+    priceChart.update();
+  }
+}
+
+function renderMarqueStats() {
+  if (!priceData) return;
+  const el = document.getElementById('marqueStats');
+  el.innerHTML = Object.entries(priceData.marques).map(([name, d]) => {
+    const prices = d.prices;
+    const current = prices[prices.length - 1];
+    const prev = prices[0];
+    const changePct = (((current - prev) / prev) * 100).toFixed(1);
+    const isUp = changePct >= 0;
+    return `<div class="marque-stat-card">
+      <h4><span class="dot" style="background:${d.color};width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px"></span>${name}</h4>
+      <div class="current" style="color:${d.color}">$${current.toLocaleString()}</div>
+      <div class="change ${isUp ? 'up' : 'down'}">${isUp ? '↑' : '↓'} ${changePct}% over 12 months</div>
+    </div>`;
+  }).join('');
+}
+
 init();
+initPriceHistory();
 </script>
 </body>
 </html>
