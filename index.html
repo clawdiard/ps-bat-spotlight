@@ -76,6 +76,36 @@ footer a{color:var(--accent);text-decoration:none}
 .marque-stat-card .change.down{color:var(--red)}
 @media(max-width:768px){header h1{font-size:2rem}.stats-bar{gap:24px}.auction-grid{grid-template-columns:1fr}.notable-sale{flex-direction:column;gap:8px}}
 @media(min-width:768px) and (max-width:1024px){.auction-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* Watchlist */
+.watchlist-toggle{position:fixed;bottom:28px;right:28px;width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--bg);border:none;font-size:1.6rem;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.4);z-index:1000;transition:transform 0.2s,box-shadow 0.2s;display:flex;align-items:center;justify-content:center}
+.watchlist-toggle:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(201,168,76,0.55)}
+.watchlist-toggle .badge{position:absolute;top:-2px;right:-2px;background:var(--red);color:#fff;font-size:0.65rem;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:sans-serif}
+.watchlist-panel{position:fixed;bottom:100px;right:28px;width:340px;max-height:70vh;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 48px rgba(0,0,0,0.6);z-index:1001;overflow:hidden;display:none;flex-direction:column}
+.watchlist-panel.open{display:flex}
+.watchlist-header{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.watchlist-header h3{font-size:1.05rem;font-weight:400;color:var(--accent);letter-spacing:0.04em}
+.watchlist-close{background:none;border:none;color:var(--text-dim);font-size:1.3rem;cursor:pointer}
+.watchlist-body{padding:16px 20px;overflow-y:auto;flex:1}
+.watchlist-body p.wl-hint{font-size:0.82rem;color:var(--text-dim);margin-bottom:14px;line-height:1.45}
+.wl-marque-list{display:flex;flex-direction:column;gap:8px}
+.wl-marque{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;transition:border-color 0.2s;cursor:pointer}
+.wl-marque:hover{border-color:var(--accent-dim)}
+.wl-marque.watched{border-color:var(--accent);background:rgba(201,168,76,0.08)}
+.wl-marque .name{font-size:0.9rem}
+.wl-marque .wl-star{font-size:1.1rem;color:var(--text-dim);transition:color 0.2s}
+.wl-marque.watched .wl-star{color:var(--accent)}
+.wl-alerts-section{margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+.wl-alerts-section h4{font-size:0.85rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
+.wl-alert-item{padding:10px 12px;background:rgba(201,168,76,0.06);border:1px solid var(--accent-dim);border-radius:6px;margin-bottom:8px;font-size:0.85rem;line-height:1.4}
+.wl-alert-item .wl-alert-title{color:var(--accent);font-weight:400}
+.wl-alert-item .wl-alert-detail{color:var(--text-dim);margin-top:3px}
+.wl-empty{color:var(--text-dim);font-size:0.85rem;font-style:italic}
+.alert-banner{position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(10,10,15,0.95));border-bottom:1px solid var(--accent-dim);padding:14px 24px;z-index:999;display:none;align-items:center;justify-content:space-between;backdrop-filter:blur(12px)}
+.alert-banner.show{display:flex}
+.alert-banner-text{font-size:0.9rem;color:var(--accent);display:flex;align-items:center;gap:10px}
+.alert-banner-dismiss{background:none;border:1px solid var(--accent-dim);color:var(--accent);padding:5px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:0.8rem}
+@media(max-width:768px){.watchlist-panel{right:12px;left:12px;width:auto;bottom:96px}.watchlist-toggle{bottom:20px;right:20px}}
 </style>
 </head>
 <body>
@@ -373,8 +403,150 @@ function renderMarqueStats() {
   }).join('');
 }
 
-init();
+init().then(() => initWatchlist());
 initPriceHistory();
+
+/* ── Watchlist & Alerts ── */
+const WL_KEY = 'bat-spotlight-watchlist';
+const WL_SEEN_KEY = 'bat-spotlight-seen';
+
+const ALL_MARQUES = [
+  'Porsche','Ferrari','Lamborghini','BMW','Mercedes-Benz','Jaguar','Aston Martin',
+  'Alfa Romeo','Lotus','Maserati','Bentley','Rolls-Royce','Audi','Volkswagen',
+  'Toyota','Nissan','Honda','Mazda','Datsun','Subaru','Mitsubishi',
+  'Chevrolet','Ford','Dodge','Cadillac','Pontiac','Buick','Plymouth','AMC',
+  'Land Rover','Volvo','Saab','MINI','Triumph','MG','De Tomaso','Lancia'
+];
+
+function getWatchlist() {
+  try { return JSON.parse(localStorage.getItem(WL_KEY)) || []; } catch(e) { return []; }
+}
+function setWatchlist(list) {
+  localStorage.setItem(WL_KEY, JSON.stringify(list));
+}
+function getSeenIds() {
+  try { return JSON.parse(localStorage.getItem(WL_SEEN_KEY)) || []; } catch(e) { return []; }
+}
+function setSeenIds(ids) {
+  localStorage.setItem(WL_SEEN_KEY, JSON.stringify(ids.slice(-200)));
+}
+
+function toggleWatchlistPanel() {
+  document.getElementById('watchlistPanel').classList.toggle('open');
+}
+
+function toggleMarqueWatch(marque) {
+  let wl = getWatchlist();
+  if (wl.includes(marque)) wl = wl.filter(m => m !== marque);
+  else wl.push(marque);
+  setWatchlist(wl);
+  renderWatchlistPanel();
+  updateWatchlistBadge();
+  checkWatchlistAlerts();
+}
+
+function renderWatchlistPanel() {
+  const wl = getWatchlist();
+  const list = document.getElementById('wlMarqueList');
+  list.innerHTML = ALL_MARQUES.map(m => {
+    const watched = wl.includes(m);
+    return `<div class="wl-marque ${watched ? 'watched' : ''}" onclick="toggleMarqueWatch('${m}')">
+      <span class="name">${m}</span><span class="wl-star">${watched ? '★' : '☆'}</span>
+    </div>`;
+  }).join('');
+
+  // Render matched alerts
+  const alertsEl = document.getElementById('wlAlerts');
+  const matches = getWatchlistMatches();
+  if (matches.length === 0) {
+    alertsEl.innerHTML = '<div class="wl-empty">No matches in current listings.</div>';
+  } else {
+    alertsEl.innerHTML = matches.map(a => `<div class="wl-alert-item">
+      <div class="wl-alert-title">${a.year ? a.year + ' ' : ''}${a.title}</div>
+      <div class="wl-alert-detail">${a.price ? 'Sold for ' + a.price : 'Active auction'}${a.bids ? ' · ' + a.bids + ' bids' : ''}</div>
+    </div>`).join('');
+  }
+}
+
+function getWatchlistMatches() {
+  const wl = getWatchlist();
+  if (!wl.length || !allAuctions.length) return [];
+  return allAuctions.filter(a => {
+    const t = (a.title || '').toLowerCase();
+    return wl.some(m => t.includes(m.toLowerCase()));
+  });
+}
+
+function updateWatchlistBadge() {
+  const badge = document.getElementById('wlBadge');
+  const matches = getWatchlistMatches();
+  const seen = getSeenIds();
+  const newMatches = matches.filter(a => !seen.includes(a.url || a.title));
+  if (newMatches.length > 0) {
+    badge.textContent = newMatches.length;
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function checkWatchlistAlerts() {
+  const matches = getWatchlistMatches();
+  const seen = getSeenIds();
+  const newMatches = matches.filter(a => !seen.includes(a.url || a.title));
+  const banner = document.getElementById('alertBanner');
+  const bannerText = document.getElementById('alertBannerText');
+
+  if (newMatches.length > 0) {
+    const names = newMatches.slice(0, 3).map(a => a.title).join(', ');
+    const extra = newMatches.length > 3 ? ` +${newMatches.length - 3} more` : '';
+    bannerText.innerHTML = `🔔 <strong>${newMatches.length} watchlist match${newMatches.length > 1 ? 'es' : ''}</strong> — ${names}${extra}`;
+    banner.classList.add('show');
+  } else {
+    banner.classList.remove('show');
+  }
+  updateWatchlistBadge();
+}
+
+function dismissAlertBanner() {
+  const matches = getWatchlistMatches();
+  const seen = getSeenIds();
+  const allIds = matches.map(a => a.url || a.title);
+  setSeenIds([...new Set([...seen, ...allIds])]);
+  document.getElementById('alertBanner').classList.remove('show');
+  updateWatchlistBadge();
+}
+
+function initWatchlist() {
+  renderWatchlistPanel();
+  checkWatchlistAlerts();
+}
 </script>
+
+<!-- Watchlist FAB & Panel -->
+<div class="alert-banner" id="alertBanner">
+  <div class="alert-banner-text" id="alertBannerText"></div>
+  <button class="alert-banner-dismiss" onclick="dismissAlertBanner()">Dismiss</button>
+</div>
+
+<button class="watchlist-toggle" onclick="toggleWatchlistPanel()" title="My Watchlist">
+  ★ <span class="badge" id="wlBadge" style="display:none">0</span>
+</button>
+
+<div class="watchlist-panel" id="watchlistPanel">
+  <div class="watchlist-header">
+    <h3>★ My Watchlist</h3>
+    <button class="watchlist-close" onclick="toggleWatchlistPanel()">✕</button>
+  </div>
+  <div class="watchlist-body">
+    <p class="wl-hint">Star your favorite marques to get alerts when they appear in new spotlight issues.</p>
+    <div class="wl-marque-list" id="wlMarqueList"></div>
+    <div class="wl-alerts-section">
+      <h4>Current Matches</h4>
+      <div id="wlAlerts"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
