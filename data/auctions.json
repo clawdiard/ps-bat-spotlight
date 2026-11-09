@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-11-02T15:31:41.924Z",
-  "weekOf": "November 2, 2026 – November 8, 2026",
+  "fetchedAt": "2026-11-09T15:57:33.835Z",
+  "weekOf": "November 9, 2026 – November 15, 2026",
   "totalAuctions": 21,
   "auctions": [
     {
@@ -12,227 +12,227 @@
       "bids": null,
       "category": "american",
       "description": "",
-      "date": "2026-11-02T15:31:41.919Z"
+      "date": "2026-11-09T15:57:33.832Z"
     },
     {
       "year": "2013",
-      "title": "43k-Mile 2013 Cadillac Escalade ESV Platinum AWD",
-      "url": "https://bringatrailer.com/listing/2013-cadillac-escalade-esv-18/",
+      "title": "Mercedes-Benz GL350 BlueTEC at No Reserve",
+      "url": "https://bringatrailer.com/listing/2013-mercedes-benz-gl350-bluetec-8-2/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 15:50:07 +0000"
+    },
+    {
+      "year": "1958",
+      "title": "Chevrolet Brookwood",
+      "url": "https://bringatrailer.com/listing/1958-chevrolet-brookwood-3/",
       "image": null,
       "price": null,
       "bids": null,
       "category": "american",
       "description": "",
-      "date": "Mon, 02 Nov 2026 15:30:11 +0000"
+      "date": "Mon, 09 Nov 2026 15:40:05 +0000"
     },
     {
-      "year": "2001",
-      "title": "41k-Mile 2001 Jaguar XK8 Convertible",
-      "url": "https://bringatrailer.com/listing/2001-jaguar-xk8-convertible-46/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "european",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 15:10:10 +0000"
-    },
-    {
-      "year": "1973",
-      "title": "Modified 1973 Datsun 240Z 5-Speed",
-      "url": "https://bringatrailer.com/listing/1973-datsun-240z-323/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "japanese",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 14:50:17 +0000"
-    },
-    {
-      "year": "2000",
-      "title": "Honda Acty Attack 4WD 5-Speed at No Reserve",
-      "url": "https://bringatrailer.com/listing/2000-honda-acty-5/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "japanese",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 14:40:04 +0000"
-    },
-    {
-      "year": "",
-      "title": "Event Coverage: The Seventh Annual Porsche Boardwalk Reunion",
-      "url": "https://bringatrailer.com/2026/11/02/event-coverage-the-seventh-annual-porsche-boardwalk-reunion/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "european",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 14:30:28 +0000"
-    },
-    {
-      "year": "1991",
-      "title": "32-Years-Owned, S54-Powered 1991 BMW M3 NASA/BMWCCA Race Car",
-      "url": "https://bringatrailer.com/listing/1991-bmw-m3-60/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "european",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 14:30:10 +0000"
-    },
-    {
-      "year": "1972",
-      "title": "Chevrolet Monte Carlo",
-      "url": "https://bringatrailer.com/listing/1972-chevrolet-monte-carlo-55/",
+      "year": "1996",
+      "title": "Ford F-250 HD XLT Crew Cab Short Bed Power Stroke 4&#215;4",
+      "url": "https://bringatrailer.com/listing/1996-ford-f-250-215/",
       "image": null,
       "price": null,
       "bids": null,
       "category": "american",
       "description": "",
-      "date": "Mon, 02 Nov 2026 14:20:12 +0000"
-    },
-    {
-      "year": "2025",
-      "title": "Porsche 718 Spyder RS Weissach",
-      "url": "https://bringatrailer.com/listing/2025-porsche-718-spyder-rs-16/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "european",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 14:10:04 +0000"
-    },
-    {
-      "year": "",
-      "title": "BaT Auction Success Story: GarageSurfer&#8217;s Audi Family Tree",
-      "url": "https://bringatrailer.com/2026/11/02/bat-auction-success-story-garagesurfers-audi-family-tree/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "european",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 14:00:16 +0000"
-    },
-    {
-      "year": "1967",
-      "title": "Austin-Healey 3000 BJ8 Mk III",
-      "url": "https://bringatrailer.com/listing/1967-austin-healey-3000-mk-iii-68/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "american",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 14:00:07 +0000"
-    },
-    {
-      "year": "2018",
-      "title": "3,900-Mile 2018 Porsche 911 GT2 RS Weissach",
-      "url": "https://bringatrailer.com/listing/2018-porsche-911-gt2-rs-107/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "european",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 13:50:08 +0000"
-    },
-    {
-      "year": "1994",
-      "title": "28-Years-Owned 1994 Acura NSX",
-      "url": "https://bringatrailer.com/listing/1994-acura-nsx-57/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "japanese",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 13:40:13 +0000"
+      "date": "Mon, 09 Nov 2026 15:30:09 +0000"
     },
     {
       "year": "1986",
-      "title": "Acura Legend Sedan 5-Speed for the Crohn’s &#038; Colitis Foundation at No Reserve",
-      "url": "https://bringatrailer.com/listing/1986-acura-legend-3/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "japanese",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 13:30:10 +0000"
-    },
-    {
-      "year": "1923",
-      "title": "Ford Model T Touring at No Reserve",
-      "url": "https://bringatrailer.com/listing/1923-ford-model-t-74/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "american",
-      "description": "",
-      "date": "Mon, 02 Nov 2026 13:25:11 +0000"
-    },
-    {
-      "year": "1987",
-      "title": "Ferrari 328 GTS",
-      "url": "https://bringatrailer.com/listing/1987-ferrari-328-gts-92/",
+      "title": "Mercedes-Benz 560SL at No Reserve",
+      "url": "https://bringatrailer.com/listing/1986-mercedes-benz-560sl-453/",
       "image": null,
       "price": null,
       "bids": null,
       "category": "european",
       "description": "",
-      "date": "Mon, 02 Nov 2026 13:15:13 +0000"
+      "date": "Mon, 09 Nov 2026 15:20:17 +0000"
+    },
+    {
+      "year": "2007",
+      "title": "Bentley Continental GTC",
+      "url": "https://bringatrailer.com/listing/2007-bentley-continental-gtc-758/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 15:10:10 +0000"
+    },
+    {
+      "year": "2016",
+      "title": "Mercedes-Benz GL350 BlueTEC at No Reserve",
+      "url": "https://bringatrailer.com/listing/2016-mercedes-benz-gl350-bluetec-6/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 15:00:16 +0000"
+    },
+    {
+      "year": "1986",
+      "title": "39-Years-Owned 1986 Mazda B2000 SE-5 5-Speed at No Reserve",
+      "url": "https://bringatrailer.com/listing/1986-mazda-b2000-pickup-11/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "japanese",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 14:50:06 +0000"
+    },
+    {
+      "year": "1992",
+      "title": "Mercedes-Benz 300SL at No Reserve",
+      "url": "https://bringatrailer.com/listing/1992-mercedes-benz-300sl-28/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 14:40:13 +0000"
     },
     {
       "year": "",
-      "title": "195 BaT Auctions Closing Today",
+      "title": "BaT Auction Success Story: Roxx76 Meets His Marauder",
+      "url": "https://bringatrailer.com/2026/11/09/bat-auction-success-story-roxx76-meets-his-marauder/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "american",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 14:30:25 +0000"
+    },
+    {
+      "year": "2003",
+      "title": "Ford Excursion Limited Power Stroke 4×4 at No Reserve",
+      "url": "https://bringatrailer.com/listing/2003-ford-excursion-146/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "american",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 14:30:12 +0000"
+    },
+    {
+      "year": "2019",
+      "title": "BMW X5 xDrive40i",
+      "url": "https://bringatrailer.com/listing/2019-bmw-x5-xdrive40i-3/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 14:20:02 +0000"
+    },
+    {
+      "year": "1968",
+      "title": "396-Powered 1968 Chevrolet Chevelle Malibu Sport Coupe",
+      "url": "https://bringatrailer.com/listing/1968-chevrolet-chevelle-27/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "american",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 14:10:04 +0000"
+    },
+    {
+      "year": "2005",
+      "title": "Porsche Boxster 5-Speed at No Reserve",
+      "url": "https://bringatrailer.com/listing/2005-porsche-boxster-87/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 14:00:08 +0000"
+    },
+    {
+      "year": "1969",
+      "title": "Ford Mustang Mach 1 M-Code 351",
+      "url": "https://bringatrailer.com/listing/1969-ford-mustang-mach-1-204/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "american",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 13:50:12 +0000"
+    },
+    {
+      "year": "2008",
+      "title": "38k-Mile 2008 BMW M3 Coupe at No Reserve",
+      "url": "https://bringatrailer.com/listing/2008-bmw-m3-coupe-100/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 13:40:11 +0000"
+    },
+    {
+      "year": "2023",
+      "title": "140-Mile 2023 Ford Shelby F-150 Off-Road Lariat SuperCrew 4×4",
+      "url": "https://bringatrailer.com/listing/2023-ford-f-150-shelby-3/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "american",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 13:30:04 +0000"
+    },
+    {
+      "year": "1995",
+      "title": "Nissan Skyline GT-R",
+      "url": "https://bringatrailer.com/listing/1995-nissan-skyline-gt-r-38/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "japanese",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 13:25:16 +0000"
+    },
+    {
+      "year": "1991",
+      "title": "44k-Kilometer 1991 BMW Z1 at No Reserve",
+      "url": "https://bringatrailer.com/listing/1991-bmw-z1-12/",
+      "image": null,
+      "price": null,
+      "bids": null,
+      "category": "european",
+      "description": "",
+      "date": "Mon, 09 Nov 2026 13:15:01 +0000"
+    },
+    {
+      "year": "",
+      "title": "238 BaT Auctions Closing Today",
       "url": "https://bringatrailer.com/auctions/",
       "image": null,
       "price": null,
       "bids": null,
       "category": "american",
       "description": "",
-      "date": "Mon, 02 Nov 2026 13:00:00 +0000"
+      "date": "Mon, 09 Nov 2026 13:00:00 +0000"
     },
     {
-      "year": "1962",
-      "title": "Chrysler New Yorker Town &#038; Country Nine-Passenger Wagon",
-      "url": "https://bringatrailer.com/listing/1962-chrysler-new-yorker/",
+      "year": "1973",
+      "title": "Dodge Challenger",
+      "url": "https://bringatrailer.com/listing/1973-dodge-challenger-47/",
       "image": null,
       "price": null,
       "bids": null,
       "category": "american",
       "description": "",
-      "date": "Sun, 01 Nov 2026 23:00:01 +0000"
-    },
-    {
-      "year": "1966",
-      "title": "LS7-Powered 1966 Chevrolet Corvette Coupe 5-Speed",
-      "url": "https://bringatrailer.com/listing/1966-chevrolet-corvette-coupe-141/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "american",
-      "description": "",
-      "date": "Sun, 01 Nov 2026 22:00:05 +0000"
-    },
-    {
-      "year": "2015",
-      "title": "18k-Mile 2015 BMW Z4 sDrive35i M Sport",
-      "url": "https://bringatrailer.com/listing/2015-bmw-z4-sdrive35i-4/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "european",
-      "description": "",
-      "date": "Sun, 01 Nov 2026 21:50:08 +0000"
-    },
-    {
-      "year": "1958",
-      "title": "Single-Family-Owned 1958 Cadillac Series 62 Sedan",
-      "url": "https://bringatrailer.com/listing/1958-cadillac-series-62-6/",
-      "image": null,
-      "price": null,
-      "bids": null,
-      "category": "american",
-      "description": "",
-      "date": "Sun, 01 Nov 2026 21:40:03 +0000"
+      "date": "Mon, 09 Nov 2026 00:14:29 +0000"
     }
   ]
 }
